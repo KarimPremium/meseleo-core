@@ -1,0 +1,79 @@
+[build-system]
+requires = ["hatchling==1.27.0"]
+build-backend = "hatchling.build"
+
+[project]
+name = "meseleo-core"
+version = "0.3.0"
+description = "Framework-independent decision core for reliability-constrained link adaptation on direct-to-satellite IoT and LEO links"
+readme = "README.md"
+requires-python = ">=3.12,<3.13"
+license = "AGPL-3.0-or-later"
+license-files = ["LICENSE"]
+authors = [{ name = "Houcine Messad" }]
+keywords = [
+  "lora",
+  "lr-fhss",
+  "lorawan",
+  "ntn",
+  "direct-to-satellite",
+  "leo",
+  "iot",
+  "link-adaptation",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Science/Research",
+  "Intended Audience :: Telecommunications Industry",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering",
+  "Typing :: Typed",
+]
+dependencies = [
+  "numpy>=2.3,<3",
+  "pydantic>=2.12,<3",
+  "skyfield>=1.53,<2",
+]
+
+[project.optional-dependencies]
+dev = [
+  "mypy>=1.15,<2",
+  "pytest>=8.3,<9",
+  "ruff>=0.12,<1",
+]
+rag = [
+  "chromadb>=1.4,<2",
+  "langchain-ollama>=1.0,<2",
+]
+
+[project.urls]
+Homepage = "https://meseleo.fr"
+Source = "https://github.com/KarimPremium/meseleo-core"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/meseleo_core"]
+
+[tool.pytest.ini_options]
+minversion = "8.2"
+testpaths = ["tests"]
+addopts = ["-ra", "--strict-config", "--strict-markers"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+src = ["src", "tests"]
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**/*.py" = ["S101"]
+
+[tool.mypy]
+python_version = "3.12"
+strict = true
+plugins = ["pydantic.mypy"]
+mypy_path = ["src"]
+files = ["src"]
+warn_unused_configs = true
+show_error_codes = true

@@ -1,0 +1,35 @@
+# Deterministic line endings so scientific-fixture provenance (raw-byte SHA-256) is stable
+# across OS, git checkout (even with core.autocrlf=true), and archive extraction.
+* text=auto eol=lf
+
+*.py   text eol=lf
+*.sql  text eol=lf
+*.csv  text eol=lf
+*.json text eol=lf
+*.toml text eol=lf
+*.yaml text eol=lf
+*.yml  text eol=lf
+*.md   text eol=lf
+*.ts   text eol=lf
+*.tsx  text eol=lf
+*.js   text eol=lf
+*.mjs  text eol=lf
+*.sh   text eol=lf
+
+# Documented choice: this repository keeps PowerShell scripts LF-consistent (PowerShell 5.1+
+# runs LF .ps1 fine); LF everywhere keeps provenance reproducible.
+*.ps1  text eol=lf
+
+# Binary formats: never line-ending-rewritten by git or the archive-building process.
+*.zip         binary
+*.pptx        binary
+*.pdf         binary
+*.png         binary
+*.jpg         binary
+*.jpeg        binary
+*.webp        binary
+*.woff        binary
+*.woff2       binary
+*.gguf        binary
+*.onnx        binary
+*.safetensors binary
